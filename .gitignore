@@ -1,0 +1,36 @@
+# Build artifacts
+build/
+*.vvp
+*.vcd
+*.fst
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+venv/
+.venv/
+
+# Generated output (uncomment to track output files)
+# output/*.png
+# output/*.gif
+output/*.raw
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Simulation artifacts
+test/sim_build/
+test/results.xml
+test/__pycache__/
+
+# Cline/tool storage
+.cline_storage/

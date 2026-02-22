@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VGA Ray Marcher - Output Viewer</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1a1a2e;
+            color: #eee;
+        }
+        h1 { color: #ff6b6b; text-align: center; margin-bottom: 30px; }
+        h2 { color: #4ecdc4; border-bottom: 2px solid #4ecdc4; padding-bottom: 10px; margin-top: 40px; }
+        
+        /* Most Recent Section - Large GIFs */
+        .recent-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        .gif-container-large {
+            background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #4ecdc4;
+            box-shadow: 0 4px 20px rgba(78, 205, 196, 0.2);
+        }
+        .gif-container-large img {
+            max-width: 100%;
+            border-radius: 8px;
+            image-rendering: pixelated;
+            margin-top: 10px;
+        }
+        .gif-container-large h4 {
+            margin: 0 0 8px 0;
+            color: #4ecdc4;
+            font-size: 1.2rem;
+        }
+        
+        /* History Section - Small GIFs */
+        .history-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+        .gif-container-small {
+            background: #16213e;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .gif-container-small img {
+            max-width: 100%;
+            border-radius: 4px;
+            image-rendering: pixelated;
+            margin-top: 5px;
+        }
+        .gif-container-small .gif-name {
+            color: #4ecdc4;
+            font-size: 0.75rem;
+            display: block;
+            margin-bottom: 3px;
+        }
+        
+        .frame-count {
+            display: inline-block;
+            background: #ff6b6b;
+            color: #fff;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .category-section {
+            margin-bottom: 40px;
+        }
+        .category-title {
+            color: #888;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .category-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #333;
+        }
+        .empty-group {
+            color: #666;
+            font-style: italic;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .info {
+            background: #0f3460;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        .info h3 { color: #ff6b6b; margin-top: 0; }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .stat {
+            background: #16213e;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .stat-value { font-size: 1.3rem; color: #4ecdc4; }
+        .stat-label { font-size: 0.75rem; color: #888; }
+    </style>
+</head>
+<body>
+    <h1>🌐 VGA Sphere Ray Marcher</h1>
+    
+    <h2>⭐ Most Recent</h2>
+    <div class="recent-container">
+
+        <div class="gif-container-large">
+            <h4>🔮 Sphere Only</h4>
+            <span class="frame-count">Latest</span>
+            <img src="gifs/sphere_verilog_latest.gif" alt="🔮 Sphere Only" loading="lazy">
+        </div>
+
+        <div class="gif-container-large">
+            <h4>🏁 Sphere + Floor</h4>
+            <span class="frame-count">Latest</span>
+            <img src="gifs/sphere_floor_latest.gif" alt="🏁 Sphere + Floor" loading="lazy">
+        </div>
+
+        <div class="gif-container-large">
+            <h4>🪙 Mario Coin</h4>
+            <span class="frame-count">Latest</span>
+            <img src="gifs/mario_coin_latest.gif" alt="🪙 Mario Coin" loading="lazy">
+        </div>
+
+    </div>
+    
+    <h2>📁 Simulation History</h2>
+    
+    <div class="category-section">
+        <div class="category-title">🟡 Mario Coin</div>
+        <div class="history-container">
+
+            <div class="gif-container-small">
+                <span class="gif-name">02/22 01:19</span>
+                <img src="gifs/mario_coin_20260222_011948.gif" alt="mario_coin_20260222_011948.gif" loading="lazy">
+            </div>
+
+            <div class="gif-container-small">
+                <span class="gif-name">02/22 01:07</span>
+                <img src="gifs/mario_coin_20260222_010705.gif" alt="mario_coin_20260222_010705.gif" loading="lazy">
+            </div>
+
+            <div class="gif-container-small">
+                <span class="gif-name">02/22 01:00</span>
+                <img src="gifs/mario_coin_20260222_010053.gif" alt="mario_coin_20260222_010053.gif" loading="lazy">
+            </div>
+
+            <div class="gif-container-small">
+                <span class="gif-name">02/22 00:52</span>
+                <img src="gifs/mario_coin_20260222_005212.gif" alt="mario_coin_20260222_005212.gif" loading="lazy">
+            </div>
+
+            <div class="gif-container-small">
+                <span class="gif-name">02/22 00:45</span>
+                <img src="gifs/mario_coin_20260222_004522.gif" alt="mario_coin_20260222_004522.gif" loading="lazy">
+            </div>
+
+            <div class="gif-container-small">
+                <span class="gif-name">02/22 00:38</span>
+                <img src="gifs/mario_coin_20260222_003825.gif" alt="mario_coin_20260222_003825.gif" loading="lazy">
+            </div>
+
+            <div class="gif-container-small">
+                <span class="gif-name">02/21 22:50</span>
+                <img src="gifs/mario_coin_20260221_225022.gif" alt="mario_coin_20260221_225022.gif" loading="lazy">
+            </div>
+
+            <div class="gif-container-small">
+                <span class="gif-name">02/21 19:33</span>
+                <img src="gifs/mario_coin_20260221_193347.gif" alt="mario_coin_20260221_193347.gif" loading="lazy">
+            </div>
+
+            <div class="gif-container-small">
+                <span class="gif-name">02/21 19:28</span>
+                <img src="gifs/mario_coin_20260221_192822.gif" alt="mario_coin_20260221_192822.gif" loading="lazy">
+            </div>
+
+            <div class="gif-container-small">
+                <span class="gif-name">02/21 19:16</span>
+                <img src="gifs/mario_coin_20260221_191656.gif" alt="mario_coin_20260221_191656.gif" loading="lazy">
+            </div>
+
+        </div>
+    </div>
+    
+    <div class="category-section">
+        <div class="category-title">🔵 Sphere + Floor</div>
+        <div class="history-container">
+
+            <div class="gif-container-small">
+                <span class="gif-name">02/22 00:18</span>
+                <img src="gifs/sphere_floor_20260222_001858.gif" alt="sphere_floor_20260222_001858.gif" loading="lazy">
+            </div>
+
+            <div class="gif-container-small">
+                <span class="gif-name">02/21 23:11</span>
+                <img src="gifs/sphere_floor_20260221_231123.gif" alt="sphere_floor_20260221_231123.gif" loading="lazy">
+            </div>
+
+            <div class="gif-container-small">
+                <span class="gif-name">02/21 19:11</span>
+                <img src="gifs/sphere_floor_20260221_191154.gif" alt="sphere_floor_20260221_191154.gif" loading="lazy">
+            </div>
+
+            <div class="gif-container-small">
+                <span class="gif-name">02/21 18:38</span>
+                <img src="gifs/sphere_floor_20260221_183817.gif" alt="sphere_floor_20260221_183817.gif" loading="lazy">
+            </div>
+
+            <div class="gif-container-small">
+                <span class="gif-name">02/21 18:27</span>
+                <img src="gifs/sphere_floor_20260221_182736.gif" alt="sphere_floor_20260221_182736.gif" loading="lazy">
+            </div>
+
+            <div class="gif-container-small">
+                <span class="gif-name">02/21 17:58</span>
+                <img src="gifs/sphere_floor_20260221_175805.gif" alt="sphere_floor_20260221_175805.gif" loading="lazy">
+            </div>
+
+            <div class="gif-container-small">
+                <span class="gif-name">02/21 17:44</span>
+                <img src="gifs/sphere_floor_20260221_174452.gif" alt="sphere_floor_20260221_174452.gif" loading="lazy">
+            </div>
+
+            <div class="gif-container-small">
+                <span class="gif-name">02/21 17:38</span>
+                <img src="gifs/sphere_floor_20260221_173804.gif" alt="sphere_floor_20260221_173804.gif" loading="lazy">
+            </div>
+
+            <div class="gif-container-small">
+                <span class="gif-name">02/21 17:13</span>
+                <img src="gifs/sphere_floor_20260221_171359.gif" alt="sphere_floor_20260221_171359.gif" loading="lazy">
+            </div>
+
+            <div class="gif-container-small">
+                <span class="gif-name">02/21 16:52</span>
+                <img src="gifs/sphere_floor_20260221_165214.gif" alt="sphere_floor_20260221_165214.gif" loading="lazy">
+            </div>
+
+            <div class="gif-container-small">
+                <span class="gif-name"></span>
+                <img src="gifs/sphere_floor.gif" alt="sphere_floor.gif" loading="lazy">
+            </div>
+
+        </div>
+    </div>
+    
+    <div class="category-section">
+        <div class="category-title">⚪ Sphere Only</div>
+        <div class="history-container">
+
+            <div class="gif-container-small">
+                <span class="gif-name">02/22 00:16</span>
+                <img src="gifs/sphere_verilog_20260222_001635.gif" alt="sphere_verilog_20260222_001635.gif" loading="lazy">
+            </div>
+
+            <div class="gif-container-small">
+                <span class="gif-name">02/22 00:09</span>
+                <img src="gifs/sphere_verilog_20260222_000948.gif" alt="sphere_verilog_20260222_000948.gif" loading="lazy">
+            </div>
+
+            <div class="gif-container-small">
+                <span class="gif-name">02/21 23:54</span>
+                <img src="gifs/sphere_verilog_20260221_235404.gif" alt="sphere_verilog_20260221_235404.gif" loading="lazy">
+            </div>
+
+            <div class="gif-container-small">
+                <span class="gif-name">02/21 23:27</span>
+                <img src="gifs/sphere_verilog_20260221_232711.gif" alt="sphere_verilog_20260221_232711.gif" loading="lazy">
+            </div>
+
+            <div class="gif-container-small">
+                <span class="gif-name">02/21 23:02</span>
+                <img src="gifs/sphere_verilog_20260221_230247.gif" alt="sphere_verilog_20260221_230247.gif" loading="lazy">
+            </div>
+
+            <div class="gif-container-small">
+                <span class="gif-name">02/21 19:12</span>
+                <img src="gifs/sphere_verilog_20260221_191240.gif" alt="sphere_verilog_20260221_191240.gif" loading="lazy">
+            </div>
+
+            <div class="gif-container-small">
+                <span class="gif-name">02/21 17:49</span>
+                <img src="gifs/sphere_verilog_20260221_174954.gif" alt="sphere_verilog_20260221_174954.gif" loading="lazy">
+            </div>
+
+            <div class="gif-container-small">
+                <span class="gif-name">02/21 17:29</span>
+                <img src="gifs/sphere_verilog_20260221_172932.gif" alt="sphere_verilog_20260221_172932.gif" loading="lazy">
+            </div>
+
+            <div class="gif-container-small">
+                <span class="gif-name">02/21 17:00</span>
+                <img src="gifs/sphere_verilog_20260221_170023.gif" alt="sphere_verilog_20260221_170023.gif" loading="lazy">
+            </div>
+
+            <div class="gif-container-small">
+                <span class="gif-name"></span>
+                <img src="gifs/sphere_verilog.gif" alt="sphere_verilog.gif" loading="lazy">
+            </div>
+
+            <div class="gif-container-small">
+                <span class="gif-name"></span>
+                <img src="gifs/sphere.gif" alt="sphere.gif" loading="lazy">
+            </div>
+
+        </div>
+    </div>
+    
+    <div class="info">
+        <h3>📊 Performance Statistics</h3>
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-value">640×480</div>
+                <div class="stat-label">Resolution</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">60 FPS</div>
+                <div class="stat-label">Real-time on FPGA</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">25.175 MHz</div>
+                <div class="stat-label">Pixel Clock</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">~1000x</div>
+                <div class="stat-label">FPGA Speedup</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

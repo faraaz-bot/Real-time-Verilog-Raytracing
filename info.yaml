@@ -1,0 +1,93 @@
+# Tiny Tapeout project information
+# https://tinytapeout.com
+
+project:
+  title: "VGA Sphere Ray Marcher"
+  author: "Your Name"
+  discord: ""
+  description: "Real-time ray-marched 3D sphere rendered to VGA using CORDIC (shifts and adds only)"
+  language: "Verilog"
+  clock_hz: 25175000  # 25.175 MHz VGA pixel clock
+  
+  # How many tiles your design occupies (1-8)
+  tiles: "4x4"
+
+  # Your top module name (must start with "tt_um_")
+  top_module: "tt_um_vga_sphere"
+
+  # Source files (relative to src/)
+  source_files:
+    - tt_um_vga_sphere.v
+    - vga_sphere.v
+    - sphere_core.v
+    - ray_sphere.v
+    - vec_rotate2.v
+    - vec_rotate3.v
+    - dist_scale3d.v
+
+# Pinout configuration
+pinout:
+  # Dedicated inputs (directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly)
+  inputs:
+    - none
+    - none
+    - none
+    - none
+    - none
+    - none
+    - none
+    - none
+
+  # Dedicated outputs (directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly directly)
+  outputs:
+    - hsync
+    - B0
+    - G0
+    - R0
+    - vsync
+    - B1
+    - G1
+    - R1
+
+  # Bidirectional pins (directly directly directly directly directly directly)
+  bidirectional:
+    - none
+    - none
+    - none
+    - none
+    - none
+    - none
+    - none
+    - none
+
+# Documentation
+documentation:
+  how_it_works: |
+    This design renders a 3D ray-marched sphere in real-time to VGA output.
+    
+    The rendering uses signed distance functions (SDF) evaluated using CORDIC
+    (COordinate Rotation DIgital Computer) which computes vector lengths using
+    only shifts and adds - no multipliers needed!
+    
+    Key features:
+    - Sphere SDF: distance = length(point) - radius
+    - CORDIC computes 3D length with 2 sequential 2D operations
+    - Surface lighting computed as side-effect of CORDIC
+    - Camera rotation using HAKMEM 149 (Minsky circle algorithm)
+    - Bayer dithering for temporal anti-aliasing
+    - Racing-the-beam rendering (no framebuffer)
+    
+    The design runs at 25.175 MHz (VGA pixel clock) and outputs 640x480@60Hz.
+    
+  how_to_test: |
+    1. Connect a TinyVGA PMOD to the output pins
+    2. Provide a 25.175 MHz clock (or close approximation)
+    3. Release reset and observe the rotating sphere on VGA monitor
+    
+    The sphere should appear as a shaded 3D object with a blue background.
+    Camera slowly rotates around the sphere showing lighting from different angles.
+    
+  external_hardware: |
+    - TinyVGA PMOD (https://github.com/mole99/tiny-vga)
+    - VGA monitor
+    - 25.175 MHz clock source (or 25 MHz approximation)
