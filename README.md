@@ -2,7 +2,7 @@
 
 A real-time ray marcher that renders 3D shaded shapes on VGA output, designed for Tiny Tapeout. The rendering uses only fixed-point arithmetic and CORDIC algorithms - no multipliers required!
 
-![Sphere with Floor](output/gifs/sphere_floor_latest.gif)
+![Sphere with Floor](output/gifs/sphere_latest.gif)
 
 ## Quick Start (From Scratch)
 
@@ -271,9 +271,6 @@ cd test && make test-spherehit
 The testbench follows TinyTapeout guidelines:
 - `tb.v` instantiates `tt_um_vga_sphere` with correct interface
 - `test.py` contains required cocotb assertions
-- All bidirectional pins configured as inputs (`uio_oe = 0x00`)
-- Unused outputs assigned to 0
-
 ---
 
 ## Roadmap
@@ -284,6 +281,4 @@ The testbench follows TinyTapeout guidelines:
 - [x] Mario coin (flattened sphere)
 - [ ] Kirby character (multiple SDFs)
 - [ ] Reflective floor
-- [ ] Torus (donut)
-
 ---
